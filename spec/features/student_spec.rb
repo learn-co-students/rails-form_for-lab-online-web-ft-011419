@@ -2,21 +2,6 @@ require 'rails_helper'
 
 
 describe 'form page' do
-  it 'form renders with the new action' do
-    visit new_student_path
-    expect(page).to have_content("Student Form")
-  end
-
-  it 'new form submits content and renders form content' do
-    visit new_student_path
-
-    fill_in 'student_first_name', with: "Lindsey"
-    fill_in 'student_last_name', with: "Stirling"
-
-    click_on "Create Student"
-
-    expect(page).to have_content("Lindsey")
-  end
 
   it 'submitted edit form submits content and renders form content' do
     @edit_student = Student.create(first_name: "Daenerys", last_name: "Targaryen")
@@ -31,16 +16,6 @@ describe 'form page' do
     expect(page).to have_content("Lindsey")
   end
 
-  it 'creates a record in the database' do
-    visit new_student_path
-
-    fill_in 'student_first_name', with: "Sansa"
-    fill_in 'student_last_name', with: "Stark"
-
-    click_on "Create Student"
-
-    expect(Student.last.first_name).to eq("Sansa")
-  end
 
   it 'submitted edit form creates a record in the database' do
     @edit_db_student = Student.create(first_name: "Daenerys", last_name: "Targaryen")
